@@ -85,9 +85,7 @@ public class PlayerManagerImpl implements PlayerManager {
 		if (!users.isEmpty()) {
 			List<Runnable> tasks = users.values().parallelStream().filter(user -> !user.isOffline()).map(user -> {
 				Runnable runnable = () -> {
-					if (!user.isOffline()) {
-						user.write(message);
-					}
+					user.write(message);
 				};
 				return runnable;
 			}).collect(Collectors.toList());
